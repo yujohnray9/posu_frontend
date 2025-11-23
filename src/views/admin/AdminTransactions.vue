@@ -158,7 +158,7 @@
 													<div class="user-avatar">
 <img 
                         v-if="transaction.apprehending_officer?.image" 
-                        :src="`http://127.0.0.1:8000/storage/${transaction.apprehending_officer?.image}`" 
+                        :src="`https://posuechague.site/backend/storage/${transaction.apprehending_officer?.image}`" 
                         alt="avatar" 
                         class="avatar-img"
                       />
@@ -179,7 +179,7 @@
 														<div class="user-avatar">
 <img 
                         v-if="transaction.violator?.image" 
-                        :src="`http://127.0.0.1:8000/storage/${transaction.violator?.image}`" 
+                        :src="`https://posuechague.site/storage/${transaction.violator?.image}`" 
                         alt="avatar" 
                         class="avatar-img"
                       />
@@ -226,7 +226,7 @@
                                 </td>
                                 <td>
                                     <div class="location-info">
-                                        {{ transaction.location || 'N/A' }}
+                                        {{ transaction.formatted_location || transaction.location || 'N/A' }}
                                     </div>
                                 </td>
                                 <td class="date-time">
@@ -606,13 +606,19 @@
                                     <div class="detail-item">
                                         <label>Location:</label>
                                         <span>{{
-                                            selectedTransaction.location
+                                            selectedTransaction.formatted_location || selectedTransaction.location
                                         }}</span>
                                     </div>
                                 </div><br>
                                  <div class="detail-item full-width" v-if="selectedTransaction.violator?.id_photo_url">
                                     <label>ID Photo:</label>
-                                    <img :src="selectedTransaction.violator.id_photo_url" alt="ID Photo" style="max-width: 100%; border-radius: 8px; border: 1px solid #e5e7eb;" />
+                                    <!-- Add this console.log to see what URL is being passed -->
+                                    {{ console.log('ID Photo URL:', selectedTransaction.violator.id_photo_url) }}
+                                    <AuthenticatedImage 
+                                        :src="selectedTransaction.violator.id_photo_url" 
+                                        alt="ID Photo" 
+                                        style="max-width: 100%; border-radius: 8px; border: 1px solid #e5e7eb;" 
+                                    />
                                 </div>
                                 <div
                                     v-if="selectedTransaction.remarks"
@@ -642,6 +648,7 @@
 <script>
 import { ref, onMounted, computed } from "vue";
 import SidebarLayout from "@/components/SidebarLayout.vue";
+import AuthenticatedImage from "@/components/AuthenticatedImage.vue";
 import { adminAPI } from "@/services/api";
 import { useAuthStore } from "@/stores/auth";
 import Swal from "sweetalert2";
@@ -650,6 +657,7 @@ export default {
     name: "EnforcerTransactions",
     components: {
         SidebarLayout,
+        AuthenticatedImage,
     },
     setup() {
         const authStore = useAuthStore();
