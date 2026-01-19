@@ -818,7 +818,7 @@ const manageRoles = computed(() => {
   justify-content: space-between;
   position: sticky;
   top: 0;
-  z-index: 900;
+  z-index: 1;
 }
 
 .hamburger-btn {
