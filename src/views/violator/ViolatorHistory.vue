@@ -186,7 +186,7 @@
                     <span class="enforcer-name">by {{ violation.apprehending_officer?.first_name }} {{ violation.apprehending_officer?.middle_name }} {{ violation.apprehending_officer?.last_name }}</span>
                   </div>
                 </td>
-                <td>{{ violation.location }}</td>
+                <td>{{ violation.formatted_location }}</td>
                 <td class="amount-cell">₱{{ formatCurrency(violation.fine_amount) }}</td>
                 <td>
                   <span class="status-badge" :class="`status-${violation.status?.toLowerCase()}`">
