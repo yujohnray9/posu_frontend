@@ -658,7 +658,7 @@ const manageRoles = computed(() => {
   transition: width 0.3s ease;
   position: fixed;
   height: 100vh;
-  z-index: 1000;
+  z-index: 900;
 }
 
 .sidebar-collapsed {
@@ -818,7 +818,7 @@ const manageRoles = computed(() => {
   justify-content: space-between;
   position: sticky;
   top: 0;
-  z-index: 999;
+  z-index: 900;
 }
 
 .hamburger-btn {
