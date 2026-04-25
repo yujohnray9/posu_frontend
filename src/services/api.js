@@ -3,7 +3,7 @@ import axios from "axios";
 
 // Create axios instance
 const api = axios.create({
-   baseURL: 'http://localhost:8000/api',
+   baseURL: 'https://demo-production-71ec.up.railway.app/api',
    timeout: 60000,
    headers: {
       Accept: 'application/json',
